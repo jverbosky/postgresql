@@ -20,7 +20,7 @@ begin
   conn = PG.connect(dbname: 'test', user: 'something', password: '4321')
 
   # determine current max index (id) in details table
-  max_id = conn.exec('select max(id) from details')[0]
+  max_id = conn.exec("select max(id) from details")[0]
 
   # set index variable based on current max index value
   max_id["max"] == nil ? v_id = 1 : v_id = max_id["max"].to_i + 1
@@ -38,18 +38,18 @@ begin
     d_statement = 'd_statement' + v_id.to_s
     i_statement = 'i_statement' + v_id.to_s
 
-    # # prepare image for database insertion (use strict base64 encoding)
+    # prepare image for database insertion (use strict base64 encoding)
     file_open = File.binread("./public/images/user_#{v_id}.png")
     blob = Base64.strict_encode64(file_open)
 
     # insert user data into details table
-    conn.prepare(d_statement, 'insert into details (id, name, age, num_1, num_2, num_3, quote)
-                               values($1, $2, $3, $4, $5, $6, $7)')
+    conn.prepare(d_statement, "insert into details (id, name, age, num_1, num_2, num_3, quote)
+                               values($1, $2, $3, $4, $5, $6, $7)")
     conn.exec_prepared(d_statement, [v_id, v_name, v_age, v_num_1, v_num_2, v_num_3, v_quote])
 
     # insert user image into images table
-    conn.prepare(i_statement, 'insert into images (id, details_id, image)
-                               values($1, $2, $3)')
+    conn.prepare(i_statement, "insert into images (id, details_id, image)
+                               values($1, $2, $3)")
     conn.exec_prepared(i_statement, [v_id, v_id, blob])
 
     # increment index value for next iteration
@@ -59,7 +59,7 @@ begin
 
 rescue PG::Error => e
 
-  puts "Exception occurred"
+  puts 'Exception occurred'
   puts e.message
 
 ensure
