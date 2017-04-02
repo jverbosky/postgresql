@@ -48,7 +48,7 @@ begin
     # prepare SQL statement to insert user data into details table
     conn.prepare('q_statement',
                  "insert into details (id, name, age)
-                  values($1, $2, $3)")
+                  values($1, $2, $3)")  # bind parameters
 
     # execute prepared SQL statement
     conn.exec_prepared('q_statement', [v_id, v_name, v_age])
@@ -59,7 +59,7 @@ begin
     # prepare SQL statement to insert favorite numbers into numbers table
     conn.prepare('q_statement',
                  "insert into numbers (id, details_id, num_1, num_2, num_3)
-                  values($1, $2, $3, $4, $5)")
+                  values($1, $2, $3, $4, $5)")  # bind parameters
 
     # execute prepared SQL statement
     conn.exec_prepared('q_statement', [v_id, v_id, v_num_1, v_num_2, v_num_3])
@@ -70,7 +70,7 @@ begin
     # prepare SQL statement to insert user quote into quotes table
     conn.prepare('q_statement',
                  "insert into quotes (id, details_id, quote)
-                  values($1, $2, $3)")
+                  values($1, $2, $3)")  # bind parameters
 
     # execute prepared SQL statement
     conn.exec_prepared('q_statement', [v_id, v_id, v_quote])
