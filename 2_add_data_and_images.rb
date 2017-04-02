@@ -1,7 +1,5 @@
-# note - images span user_1.png - user_8.png
-# so can run this twice to build DB w/duplicate user records if desired
-
 require 'pg'
+require 'base64'
 
 begin
 
@@ -37,24 +35,22 @@ begin
     v_num_2 = user[3]
     v_num_3 = user[4]
     v_quote = user[5]
-    v_statement = 'statement' + v_id.to_s
+    d_statement = 'd_statement' + v_id.to_s
+    i_statement = 'i_statement' + v_id.to_s
 
     # # prepare image for database insertion (use strict base64 encoding)
-    # file_open = File.binread("./public/images/user_#{v_id}.png")
-    # image = Base64.strict_encode64(file_open)
-    # blob = SQLite3::Blob.new image
+    file_open = File.binread("./public/images/user_#{v_id}.png")
+    blob = Base64.strict_encode64(file_open)
 
     # insert user data into details table
-    conn.prepare(v_statement, 'insert into details (id, name, age, num_1, num_2, num_3, quote)
+    conn.prepare(d_statement, 'insert into details (id, name, age, num_1, num_2, num_3, quote)
                                values($1, $2, $3, $4, $5, $6, $7)')
-    conn.exec_prepared(v_statement, [v_id, v_name, v_age, v_num_1, v_num_2, v_num_3, v_quote])
+    conn.exec_prepared(d_statement, [v_id, v_name, v_age, v_num_1, v_num_2, v_num_3, v_quote])
 
     # insert user image into images table
-    # db.execute('insert into images (id, details_id, image)
-    #             values(?, ?, ?)', [v_id, v_id, blob])
-    # conn.prepare(v_statement, 'insert into images (id, details_id, image)
-    #                            values($1, $2, $3)')
-    # conn.exec_prepared(v_statement, [v_id, v_id, blob])
+    conn.prepare(i_statement, 'insert into images (id, details_id, image)
+                               values($1, $2, $3)')
+    conn.exec_prepared(i_statement, [v_id, v_id, blob])
 
     # increment index value for next iteration
     v_id += 1
