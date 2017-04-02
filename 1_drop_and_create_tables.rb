@@ -12,32 +12,29 @@ begin
 
   # create the details table
   conn.exec "create table details (
-    id int primary key,
-    name varchar(50),
-    age int
-    )"
+             id int primary key,
+             name varchar(50),
+             age int)"
 
   # drop numbers table if it exists
   conn.exec "drop table if exists numbers"
 
   # create the numbers table with an implied foreign key (details_id)
   conn.exec "create table numbers (
-    id int primary key,
-    details_id int,
-    num_1 int,
-    num_2 int,
-    num_3 int
-    )"
+             id int primary key,
+             details_id int,
+             num_1 int,
+             num_2 int,
+             num_3 int)"
 
   # drop quotes table if it exists
   conn.exec "drop table if exists quotes"
 
   # create the quotes table with an implied foreign key (details_id)
   conn.exec "create table quotes (
-    id int primary key,
-    details_id int,
-    quote varchar(255)
-    )"
+             id int primary key,
+             details_id int,
+             quote varchar(255))"
 
 =begin
 
