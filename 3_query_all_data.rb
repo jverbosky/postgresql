@@ -54,11 +54,15 @@ begin
     puts "Favorite number 3: #{row['num_3']}"
     puts "Quote: #{row['quote']}"
 
+=begin
+    # Keep for future reference, but don't use db for images
     # output user image to current directory, use strict base64 decoding
     # image = row['image']
     # f = File.new "#{row['name']}_#{row['id']}_output.png", "wb"
     # f.write(Base64.decode64(image))
     # f.close if f
+=end
+
   end
 
   # --- Example output ---
