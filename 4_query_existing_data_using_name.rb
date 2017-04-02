@@ -18,6 +18,7 @@ def query_name(v_name)
     # execute prepared SQL statement
     rs = conn.exec_prepared('q_statement', [v_name])
 
+    # return array of values returned by SQL statement
     return rs.values[0]
 
     # deallocate prepared statement variable
