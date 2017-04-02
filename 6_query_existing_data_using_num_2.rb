@@ -1,8 +1,8 @@
 require 'pg'
 
 # Method to return primary id and data for target user from details and numbers tables
-# Argument targets name in "common" details table
-def query_name(v_name)
+# Argument targets num_2 in secondary numbers table
+def query_name(v_num_2)
 
   begin
 
@@ -14,10 +14,10 @@ def query_name(v_name)
                  "select details.id, name, age, num_1, num_2, num_3
                   from details
                   join numbers on details.id = numbers.details_id
-                  where name = $1")
+                  where num_2 = $1")
 
     # execute prepared SQL statement
-    rs = conn.exec_prepared('q_statement', [v_name])
+    rs = conn.exec_prepared('q_statement', [v_num_2])
 
     # return array of values returned by SQL statement
     return rs.values[0]
@@ -39,7 +39,7 @@ def query_name(v_name)
 end
 
 # Sandbox testing
-p query_name("Jim")
+p query_name(40)
 
 # Sandbox output
-# ["3", "Jim", "61", "10", "20", "30"]
+# ["5", "June", "81", "20", "40", "60"]

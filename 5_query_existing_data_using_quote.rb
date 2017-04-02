@@ -3,6 +3,7 @@
 require 'pg'
 
 # Method to return primary id and data for target user from details and quotes tables
+# Argument targets quote in secondary quotes table
 def query_name(v_quote)
 
   begin
