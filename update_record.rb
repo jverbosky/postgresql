@@ -4,10 +4,10 @@ require_relative 'match_table.rb'
 # Class to update all columns for record using data from provided column:value hash
 class UpdateRecord
 
-  # Method to update quote to specified value for specified name
+  # Method to update any number of values in any number of tables
   # - hash needs to contain id of current record that needs to be updated
   # - order is not important (the id can be anywhere in the hash)
-  def update_columns(columns)
+  def update_values(columns)
 
     begin
 
@@ -61,8 +61,8 @@ class UpdateRecord
 end
 
 # Sandbox testing
-# column_hash_1 = {"id" => "3", "age" => "74", "num_1" => "100", "quote" => "Set your goals high, and don't stop till you get there."}
-# column_hash_2 = {"age" => "93", "num_3" => "77", "id" => "6", "quote" => "The harder the conflict, the more glorious the triumph."}
+# hash_1 = {"id" => "3", "age" => "74", "num_1" => "100", "quote" => "Set your goals high, and don't stop till you get there."}
+# hash_2 = {"age" => "93", "num_3" => "77", "id" => "6", "quote" => "The harder the conflict, the more glorious the triumph."}
 # update = UpdateRecord.new
-# p update.update_columns(column_hash_1)
-# p update.update_columns(column_hash_2)
+# p update.update_values(hash_1)
+# p update.update_values(hash_2)
