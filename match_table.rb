@@ -18,7 +18,7 @@ class MatchTable
       # iterate through each table to determine which contains the specified column
       tables.each do |table|
 
-        # prepare SQL statement to update age for specified id
+        # prepare SQL statement to return array of column names in current table
         conn.prepare('q_statement',
                      "select column_name
                       from information_schema.columns
@@ -33,7 +33,7 @@ class MatchTable
         # return array of columns in table returned by SQL statement
         columns = rs.values.flatten
 
-        # update target with table name if column in table
+        # update target with table name if argument column in table
         target = table if columns.include? column
 
       end
