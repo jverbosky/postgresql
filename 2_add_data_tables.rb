@@ -9,7 +9,7 @@ begin
   user_1 = ["John", 41, 7, 11, 3, "Research is what I'm doing when I don't know what I'm doing."]
   user_2 = ["Jane", 51, 1, 2, 3, "Life is 10% what happens to you and 90% how you react to it."]
   user_3 = ["Jim", 61, 10, 20, 30, "In order to succeed, we must first believe that we can."]
-  user_4 = ["Jill", 71, 11, 22, 33, "It does not matter how slowly you go as long as you do not stop"]
+  user_4 = ["Jill", 71, 11, 22, 33, "It does not matter how slowly you go as long as you do not stop."]
   user_5 = ["June", 81, 20, 40, 60, "Problems are not stop signs, they are guidelines."]
   user_6 = ["Jen", 91, 2, 4, 6, "If you fell down yesterday, stand up today."]
   user_7 = ["Jeff", 101, 37, 47, 87, "The way to get started is to quit talking and begin doing."]

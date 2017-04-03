@@ -21,11 +21,11 @@ def query_name(v_quote)
     # execute prepared SQL statement
     rs = conn.exec_prepared('q_statement', [v_quote])
 
-    # return array of values returned by SQL statement
-    return rs.values[0]
-
     # deallocate prepared statement variable
     conn.exec("deallocate q_statement")
+
+    # return array of values returned by SQL statement
+    return rs.values[0]
 
   rescue PG::Error => e
 
